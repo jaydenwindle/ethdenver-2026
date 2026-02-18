@@ -5,7 +5,9 @@ This repo contains several services that power token bound agents - agents that 
 Token bound agents are:
 
 Autonomous - given enough capital they can operate indefinitely and work towards their goals
+
 Ownable - agents are fully under the control of their NFT's owner
+
 Transferrable - ownership of the agent follows ownership of the NFT
 
 ## services
