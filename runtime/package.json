@@ -1,0 +1,16 @@
+{
+  "name": "runtime",
+  "module": "index.ts",
+  "type": "module",
+  "private": true,
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "dependencies": {
+    "@orpc/client": "^1.13.5",
+    "@orpc/server": "^1.13.5"
+  }
+}

@@ -1,0 +1,6 @@
+[submodule "dstack"]
+	path = dstack
+	url = https://github.com/Dstack-TEE/dstack.git
+[submodule "contracts/lib/forge-std"]
+	path = contracts/lib/forge-std
+	url = https://github.com/foundry-rs/forge-std
