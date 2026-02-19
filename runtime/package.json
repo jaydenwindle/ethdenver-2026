@@ -3,14 +3,28 @@
   "module": "index.ts",
   "type": "module",
   "private": true,
+  "scripts": {
+    "dev": "bun index.ts",
+    "simulator": "cd ../dstack/sdk/simulator && ./dstack-simulator",
+    "test:accounts": "bun scripts/test-accounts.ts",
+    "typecheck": "bunx tsc --noEmit"
+  },
   "devDependencies": {
-    "@types/bun": "latest"
+    "@types/bun": "latest",
+    "vitest": "^4.0.18"
   },
   "peerDependencies": {
     "typescript": "^5"
   },
   "dependencies": {
     "@orpc/client": "^1.13.5",
-    "@orpc/server": "^1.13.5"
+    "@orpc/contract": "^1.13.5",
+    "@orpc/openapi": "^1.13.5",
+    "@orpc/server": "^1.13.5",
+    "@orpc/zod": "^1.13.5",
+    "@phala/dstack-sdk": "^0.5.7",
+    "@slicekit/erc8128": "^0.2.0",
+    "viem": "^2.46.2",
+    "zod": "^4.3.6"
   }
 }
