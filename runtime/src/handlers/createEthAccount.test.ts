@@ -54,9 +54,15 @@ describe("createEthAccount procedure", () => {
     });
 
     await expect(
-      call(createEthAccount, undefined, {
-        context: { request: unsignedRequest },
-      }),
+      call(
+        createEthAccount,
+        {
+          headers: {},
+        },
+        {
+          context: { request: unsignedRequest },
+        },
+      ),
     ).rejects.toMatchObject({
       code: "UNAUTHORIZED",
       status: 401,
@@ -81,9 +87,15 @@ describe("createEthAccount procedure", () => {
     );
 
     await expect(
-      call(createEthAccount, undefined, {
-        context: { request: signedRequest },
-      }),
+      call(
+        createEthAccount,
+        {
+          headers: Object.fromEntries(signedRequest.headers.entries()),
+        },
+        {
+          context: { request: signedRequest },
+        },
+      ),
     ).resolves.toEqual({
       owner: getAddress(signerAccount.address),
       address: getAddress(dstackWallet.address),

@@ -7,6 +7,7 @@
     "dev": "bun index.ts",
     "simulator": "cd ../dstack/sdk/simulator && ./dstack-simulator",
     "test:accounts": "bun scripts/test-accounts.ts",
+    "test:walletconnect": "bun scripts/test-walletconnect.ts",
     "typecheck": "bunx tsc --noEmit"
   },
   "devDependencies": {
@@ -24,6 +25,10 @@
     "@orpc/zod": "^1.13.5",
     "@phala/dstack-sdk": "^0.5.7",
     "@slicekit/erc8128": "^0.2.0",
+    "@walletconnect/core": "^2.23.6",
+    "@walletconnect/types": "^2.23.6",
+    "@walletconnect/utils": "^2.23.6",
+    "@walletconnect/web3wallet": "^1.16.1",
     "viem": "^2.46.2",
     "zod": "^4.3.6"
   }
