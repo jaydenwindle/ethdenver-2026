@@ -5,23 +5,36 @@ services:
       - "6379:6379"
     volumes:
       - redis_data:/data
-
-  api:
-    image: oven/bun:1
-    working_dir: /app
-    depends_on:
-      - redis
+  postgres:
+    image: postgres:16-alpine
     ports:
-      - "8000:8000"
+      - "5432:5432"
     environment:
-      DSTACK_SIMULATOR_ENDPOINT: /dstack-sim/dstack.sock
-      REDIS_URL: redis://redis:6379
+      POSTGRES_DB: runtime
+      POSTGRES_USER: runtime
+      POSTGRES_PASSWORD: runtime
     volumes:
-      - ./:/app
-      - bun_modules:/app/node_modules
-      - ../dstack/sdk/simulator:/dstack-sim
-    command: sh -c "bun install && bun run dev"
+      - postgres_data:/var/lib/postgresql/data
+  #
+  # api:
+  #   image: oven/bun:1
+  #   working_dir: /app
+  #   depends_on:
+  #     - redis
+  #     - postgres
+  #   ports:
+  #     - "8000:8000"
+  #   environment:
+  #     DSTACK_SIMULATOR_ENDPOINT: /dstack-sim/dstack.sock
+  #     REDIS_URL: redis://redis:6379
+  #     DATABASE_URL: postgres://runtime:runtime@postgres:5432/runtime
+  #   volumes:
+  #     - ./:/app
+  #     - bun_modules:/app/node_modules
+  #     - ../dstack/sdk/simulator:/dstack-sim
+  #   command: sh -c "bun install && bun run dev"
 
 volumes:
-  bun_modules:
+  # bun_modules:
   redis_data:
+  postgres_data:

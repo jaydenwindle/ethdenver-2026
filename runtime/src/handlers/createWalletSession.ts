@@ -1,8 +1,8 @@
 import { os } from "../implementation";
 import { erc8128AuthMiddleware } from "../middleware/erc8128";
-import { connectWalletSession } from "../services/walletConnectSigner";
+import { createWalletSession as kickoffWalletSession } from "../services/walletConnectSigner";
 
-export const connectWalletConnect = os.connectWalletConnect
+export const createWalletSession = os.createWalletSession
   .use(erc8128AuthMiddleware)
   .handler(async ({ context, input, errors }) => {
     const owner = (context as { auth: { address: `0x${string}` } }).auth.address;
@@ -19,17 +19,16 @@ export const connectWalletConnect = os.connectWalletConnect
     }
 
     try {
-      const session = await connectWalletSession({
+      const kickoff = await kickoffWalletSession({
         owner,
         uri,
       });
 
       return {
         owner,
-        address: session.address,
-        topic: session.topic,
-        chainId: session.chainId,
-        status: "connected" as const,
+        address: kickoff.address,
+        topic: kickoff.topic,
+        status: kickoff.status,
       };
     } catch (error) {
       const message = error instanceof Error ? error.message : "WalletConnect unavailable";

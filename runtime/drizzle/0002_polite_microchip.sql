@@ -1,0 +1,1 @@
+ALTER TABLE "wallet_connect_sessions" ADD COLUMN "domain" text;

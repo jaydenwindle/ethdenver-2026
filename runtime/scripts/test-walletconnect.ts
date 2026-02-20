@@ -5,7 +5,7 @@ const FORGE_TEST_MNEMONIC =
   "test test test test test test test test test test test junk";
 
 const baseUrl = process.env.API_BASE_URL ?? "http://localhost:8000";
-const endpoint = `${baseUrl}/api/v1/walletconnect/connect`;
+const endpoint = `${baseUrl}/api/v1/walletconnectt/sessions`;
 const walletConnectUri = process.argv[2] ?? process.env.WALLETCONNECT_URI;
 
 if (!walletConnectUri) {

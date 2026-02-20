@@ -50,8 +50,8 @@ const unprefixedContract = {
         address: z.string(),
       }),
     ),
-  connectWalletConnect: oc
-    .route({ method: "POST", path: "/walletconnect/connect", inputStructure: "detailed" })
+  createWalletSession: oc
+    .route({ method: "POST", path: "/walletconnectt/sessions", inputStructure: "detailed" })
     .errors({
       UNAUTHORIZED: {
         status: 401,
@@ -91,9 +91,73 @@ const unprefixedContract = {
         owner: z.string(),
         address: z.string(),
         topic: z.string(),
-        chainId: z.number().int().positive(),
-        status: z.literal("connected"),
+        status: z.literal("pairing_started"),
       }),
+    ),
+  listWalletSessions: oc
+    .route({ method: "GET", path: "/walletconnectt/sessions", inputStructure: "detailed" })
+    .errors({
+      UNAUTHORIZED: {
+        status: 401,
+        message: "request authentication failed",
+        data: z.object({
+          reason: z.literal("ERC8128_VERIFICATION_FAILED"),
+          verificationReason: z.string(),
+        }),
+      },
+    })
+    .input(
+      z.object({
+        headers: authHeadersSchema,
+      }),
+    )
+    .output(
+      z.array(
+        z.object({
+          topic: z.string(),
+          owner: z.string(),
+          address: z.string(),
+          domain: z.string().optional(),
+          defaultChainId: z.number().int().positive(),
+        }),
+      ),
+    ),
+  listWalletSessionOperations: oc
+    .route({ method: "GET", path: "/walletconnectt/operations", inputStructure: "detailed" })
+    .errors({
+      UNAUTHORIZED: {
+        status: 401,
+        message: "request authentication failed",
+        data: z.object({
+          reason: z.literal("ERC8128_VERIFICATION_FAILED"),
+          verificationReason: z.string(),
+        }),
+      },
+    })
+    .input(
+      z.object({
+        headers: authHeadersSchema,
+        query: z
+          .object({
+            topic: z.string().optional(),
+          })
+          .optional(),
+      }),
+    )
+    .output(
+      z.array(
+        z.object({
+          id: z.number(),
+          topic: z.string(),
+          method: z.string(),
+          chainId: z.string(),
+          params: z.unknown(),
+          status: z.enum(["proposed", "succeeded", "failed"]),
+          timestamp: z.number(),
+          result: z.unknown().optional(),
+          error: z.string().optional(),
+        }),
+      ),
     ),
 };
 

@@ -1,0 +1,27 @@
+{
+  "version": "7",
+  "dialect": "postgresql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "7",
+      "when": 1771597214073,
+      "tag": "0000_rich_black_panther",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1771598838017,
+      "tag": "0001_optimal_skaar",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1771598938266,
+      "tag": "0002_polite_microchip",
+      "breakpoints": true
+    }
+  ]
+}
